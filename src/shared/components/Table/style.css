@@ -1,0 +1,109 @@
+.rdg {
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-y: none;
+  position: relative;
+}
+
+.rdg > div:first-child {
+  background-color: #f8f9fa;
+  border-width: 3px;
+  line-height: 28px;
+  font-size: 13px;
+  color: #006a5d;
+  font-weight: 700;
+  padding-block: 0;
+  padding-inline: 8px;
+}
+
+.rdg-header-row > div:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.rdg-header-row > div:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.rdg-cell {
+  outline: none;
+  align-items: center;
+  position: relative;
+}
+.rdg-cell:last-child {
+  overflow: -moz-hidden-unscrollable;
+}
+.rdg-checkbox {
+  border-width: 2px;
+  border-radius: 3px;
+  border-color: #006a5d;
+}
+.rdg-checkbox > input {
+  margin: 0;
+}
+
+.rdg .rdg-row .rdg-cell:last-child {
+  padding: 0;
+  overflow: visible;
+  contain: size style;
+}
+
+.row {
+  align-items: center;
+}
+.row:hover {
+  background: #d9e9e7;
+}
+
+.row[aria-selected='true'] {
+  background: #d9e9e7;
+}
+
+.editable-table .rdg-cell:focus {
+  border: 1px solid #006a5d;
+  outline: inherit;
+}
+.editable-table .rdg-cell[role='gridcell'] {
+  outline: 1px solid #006a5d;
+}
+.editable-table .row {
+  background: transparent;
+}
+
+.pagination {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #dea47e;
+  color: #dea47e;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  color: #ffffff;
+  background-color: #dea47e;
+}
+.pageActive a {
+  color: #ffffff;
+  background-color: #dea47e;
+}
+
+.pageDisable a {
+  color: #ffffff;
+  background-color: #efdacb;
+}
+
+.pageDisable a:hover {
+  color: #ffffff;
+  background-color: #efdacb;
+  cursor: unset;
+}

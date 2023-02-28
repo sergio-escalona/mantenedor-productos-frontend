@@ -1,0 +1,3 @@
+node_modules/
+*reportWebVitals.js
+*serviceWorker.js
