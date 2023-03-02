@@ -28,6 +28,7 @@ const List = () => {
     shortName: '',
     description: '',
     price: null,
+    stock: null,
     categoryId: null,
     sort: '',
     q: '',
@@ -143,6 +144,25 @@ const List = () => {
                   setFiltersList({
                     ...filters,
                     price: e.target.value,
+                  });
+                }}
+              />
+            )}
+          </FilterRenderer>
+        ),
+      },
+      {
+        key: 'stock',
+        name: 'Stock',
+        headerRenderer: props => (
+          <FilterRenderer {...props}>
+            {({ filters }) => (
+              <TableFilterInput
+                value={filters.stock}
+                onChange={e => {
+                  setFiltersList({
+                    ...filters,
+                    stock: e.target.value,
                   });
                 }}
               />

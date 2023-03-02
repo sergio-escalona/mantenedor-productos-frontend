@@ -22,6 +22,7 @@ const Form = ({ isOpen, onClose, type, data }) => {
     shortName: '',
     description: '',
     price: null,
+    stock: null,
     categoryId: null,
   };
   const { handleCreate: addProduct, handleUpdate: updateProduct } =
@@ -70,6 +71,7 @@ const Form = ({ isOpen, onClose, type, data }) => {
       shortName: data?.shortName || '',
       description: data?.description || '',
       price: data?.price || null,
+      stock: data?.stock || null,
       categoryId: data?.categoryId || null,
     });
   }, [isOpen, data]);
@@ -113,6 +115,16 @@ const Form = ({ isOpen, onClose, type, data }) => {
           onChange={formik.handleChange}
           error={Boolean(formik.errors.price)}
           helperText={formik.errors.price}
+        />
+        <Input
+          required
+          type="number"
+          name="stock"
+          label="Stock"
+          value={formik.values.stock}
+          onChange={formik.handleChange}
+          error={Boolean(formik.errors.stock)}
+          helperText={formik.errors.stock}
         />
         <Select
           label="Categoría"
