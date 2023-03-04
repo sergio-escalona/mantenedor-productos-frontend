@@ -4,9 +4,11 @@ import { Box, GridItem, SimpleGrid, Text } from '@chakra-ui/react';
 import BarGraph from './BarGraph';
 import PieGraph from './PieGraph';
 import Filters from './Filters';
+import { Button } from '../../../../shared/components';
 
 //@hooks
 import useGetAllGraphs from '../../Hooks/useGetAllGraphs';
+import useGetXlsx from '../../Hooks/useGetXlsx';
 
 export default function Graphs() {
   const [filtersList, setFiltersList] = useState({
@@ -14,6 +16,9 @@ export default function Graphs() {
     endDate: '',
   });
   const { data, isLoading } = useGetAllGraphs({ filters: filtersList });
+  const { mutateAsync: downloadExcel } = useGetXlsx({
+    filters: filtersList,
+  });
 
   return (
     <Box>
@@ -32,6 +37,9 @@ export default function Graphs() {
             Cantidad de productos por categoría
           </Text>
           {data && <PieGraph data={data} dataKey={'count'} />}
+        </GridItem>
+        <GridItem colSpan={{ base: 12, lg: 6 }}>
+          <Button onClick={downloadExcel}>Descargar XLSX</Button>
         </GridItem>
       </SimpleGrid>
     </Box>

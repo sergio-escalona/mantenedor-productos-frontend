@@ -1,4 +1,4 @@
-// import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver';
 import queryString from 'query-string';
 import axios from '../axios';
 import formatQuery from '../utils/query';
@@ -72,48 +72,28 @@ const remove = async queryKey => {
   }
 };
 
-// export const generateFileToDownload = async (
-//   queryKey: { path: string; filters: any; },
-//   type: ExportTypeFile
-// ) => {
-//   const { path, filters } = queryKey;
-//   const instance = axios;
+export const generateFileToDownload = async queryKey => {
+  const { path, filters } = queryKey;
+  const instance = axios;
 
-//   const response = await instance.post(
-//     `/${path}`,
-//     { ...filters, type },
-//     {
-//       responseType: 'arraybuffer',
-//     }
-//   );
-//   console.log(type);
+  const response = await instance.post(
+    `/${path}`,
+    { ...filters },
+    {
+      responseType: 'arraybuffer',
+    }
+  );
 
-//   const contentDisposition = response.headers['content-disposition'];
+  const fileName = 'productos';
 
-//   const fileName = contentDisposition
-//     ?.split(';')[1]
-//     .split('filename')[1]
-//     .split('=')[1]
-//     .trim();
+  const XLSXblob = new Blob([response.data], {
+    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  });
 
-//   if (type === 'xlsx' || type === 'EXCEL') {
-//     console.log(' it s exce');
-//     const XLSXblob = new Blob([response.data], {
-//       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-//     });
+  saveAs(XLSXblob, fileName);
 
-//     saveAs(XLSXblob, fileName);
-//   } else {
-//     console.log(' it s pf');
-//     const PDFblob = new Blob([response.data], {
-//       type: 'application/pdf',
-//     });
-//     console.log(' it sdasdas');
-
-//     saveAs(PDFblob, fileName);
-//   }
-//   return response.data;
-// };
+  return response.data;
+};
 
 const ApiService = {
   getAll,
@@ -121,6 +101,6 @@ const ApiService = {
   create,
   update,
   remove,
-  //   generateFileToDownload,
+  generateFileToDownload,
 };
 export default ApiService;

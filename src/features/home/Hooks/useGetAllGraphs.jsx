@@ -5,11 +5,7 @@ import Api from '../../../services/api';
 
 const path = 'dashboard';
 
-export const useGetAllGraphs = ({
-  customConfig = {},
-  filters = {},
-  selectMode = false,
-}) => {
+export const useGetAllGraphs = ({ customConfig = {}, filters = {} }) => {
   const path_ = `${path}/graphs`;
   return useQuery([path_, filters], Api.getAll, {
     refetchOnMount: true,
