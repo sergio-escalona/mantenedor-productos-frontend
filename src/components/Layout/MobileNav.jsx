@@ -1,21 +1,26 @@
-import { ReactNode } from 'react';
 import {
   Box,
-  VStack,
   Flex,
+  Center,
+  Avatar,
   HStack,
   IconButton,
   Menu,
   MenuButton,
   Text,
   MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
 import { FiMenu, FiChevronRight } from 'react-icons/fi';
-import { useAuthState } from '../../context';
-import SubSidebar from './SubSidebar';
+import { logout, useAuthDispatch, useAuthState } from '../../context';
 
 export default function MobileNav({ onOpen, children, ...rest }) {
-  const { institution } = useAuthState();
+  const { user } = useAuthState();
+  const dispatch = useAuthDispatch();
+
+  const handleLogout = () => {
+    logout(dispatch);
+  };
 
   return (
     <Flex
@@ -47,26 +52,42 @@ export default function MobileNav({ onOpen, children, ...rest }) {
               _focus={{ boxShadow: 'none' }}
             >
               <HStack>
-                <VStack
-                  display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  pr={3}
-                >
-                  <Text fontSize="sm" fontWeight="700" color="brand.500">
-                    Usuario Logueado
-                  </Text>
-                  <Text fontSize="xs" color="gray.600">
-                    {institution?.name}
-                  </Text>
-                </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
+                <Center px="15px">
+                  {user && (
+                    <Flex
+                      borderRadius="md"
+                      cursor="pointer"
+                      alignItems="center"
+                      py={1}
+                      borderWidth={1}
+                      borderColor="transparent"
+                    >
+                      <Avatar size="sm" bg="brand.500" />
+                      <Box pl={2}>
+                        <Text
+                          lineHeight="16px"
+                          color="brand.500"
+                          fontWeight={700}
+                          fontSize={12}
+                          textOverflow="ellipsis"
+                          maxW="110px"
+                          overflow="hidden"
+                          whiteSpace="nowrap"
+                        >
+                          {`${user?.first_name} ${user?.last_name}`}
+                        </Text>
+                      </Box>
+                    </Flex>
+                  )}
+                </Center>
+                <Box display={{ base: 'none', md: 'flex' }} color="brand.500">
                   <FiChevronRight />
                 </Box>
               </HStack>
             </MenuButton>
             <MenuList>
-              <SubSidebar title="Sample" />
+              <MenuItem>Ver Perfil</MenuItem>
+              <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

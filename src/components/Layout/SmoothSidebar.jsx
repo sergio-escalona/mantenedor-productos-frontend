@@ -1,14 +1,6 @@
 import { Logo } from '../../shared/components';
-import {
-  Avatar,
-  Box,
-  Center,
-  Flex,
-  IconButton,
-  Text,
-  useTheme,
-} from '@chakra-ui/react';
-import { FaChevronLeft } from 'react-icons/fa';
+import { Box, IconButton, useTheme } from '@chakra-ui/react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
   Menu,
   MenuItem,
@@ -17,10 +9,9 @@ import {
   menuClasses,
   useProSidebar,
 } from 'react-pro-sidebar';
-// import { RiDashboardLine } from 'react-icons/ri';
 import Icon from '../../shared/components/Icon';
 import { useLocation } from 'react-router-dom';
-import { logout, useAuthDispatch, useAuthState } from '../../context';
+import { useAuthDispatch, useAuthState } from '../../context';
 import { changeNavbarStatus } from '../../context/actions';
 
 export default function SmoothSIdebar({ routes }) {
@@ -28,11 +19,7 @@ export default function SmoothSIdebar({ routes }) {
   const location = useLocation();
   const dispatch = useAuthDispatch();
   const { collapseSidebar, collapsed } = useProSidebar();
-  const { user, role, sidebarCollapse } = useAuthState();
-
-  const handleLogout = () => {
-    logout(dispatch);
-  };
+  const { sidebarCollapse } = useAuthState();
 
   const handleSidebarCollapse = () => {
     changeNavbarStatus(dispatch, !collapsed);
@@ -79,7 +66,13 @@ export default function SmoothSIdebar({ routes }) {
           color="brand.500"
           borderRadius="8px"
           boxShadow="0px 8px 25px rgba(0, 0, 0, 0.25)"
-          icon={<FaChevronLeft size={15} />}
+          icon={
+            collapsed ? (
+              <FaChevronRight size={15} />
+            ) : (
+              <FaChevronLeft size={15} />
+            )
+          }
           onClick={handleSidebarCollapse}
         />
         <Box
@@ -147,7 +140,6 @@ export default function SmoothSIdebar({ routes }) {
                   active={location.pathname === route.path}
                   href={route.path}
                   key={`route-${route.name}-menuItem`}
-                  // icon={<RiDashboardLine size={20} />}
                   icon={<Icon name={route.iconName} size={20} />}
                 >
                   {route.name}
@@ -155,40 +147,6 @@ export default function SmoothSIdebar({ routes }) {
               ))}
             </Box>
           </Menu>
-        </Box>
-        <Box position="absolute" bottom="20px">
-          <Center px="15px">
-            {user && (
-              <Flex
-                borderRadius="md"
-                cursor="pointer"
-                alignItems="center"
-                py={1}
-                borderWidth={1}
-                borderColor="transparent"
-                onClick={handleLogout}
-              >
-                <Avatar size="sm" bg="brand.500" />
-                {!collapsed && (
-                  <Box pl={2}>
-                    <Text
-                      lineHeight="16px"
-                      color="brand.500"
-                      fontWeight={700}
-                      fontSize={12}
-                      textOverflow="ellipsis"
-                      maxW="110px"
-                      overflow="hidden"
-                      whiteSpace="nowrap"
-                    >
-                      {`${user?.worker?.names} ${user?.worker?.lastName} ssss`}
-                    </Text>
-                    {role && <Text fontSize={12}>{role.displayName}</Text>}
-                  </Box>
-                )}
-              </Flex>
-            )}
-          </Center>
         </Box>
       </Sidebar>
     </>

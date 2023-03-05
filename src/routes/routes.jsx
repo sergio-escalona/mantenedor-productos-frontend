@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+import authRoutes from '../features/auth/routes';
 import homeRoutes from '../features/home/routes';
 import categoriesRoutes from '../features/categories/routes';
 import productsRoutes from '../features/products/routes';
@@ -17,6 +18,7 @@ const generalsRoutes = [
 
 const routes = [
   ...generalsRoutes,
+  ...authRoutes,
   ...homeRoutes,
   ...categoriesRoutes,
   ...productsRoutes,
