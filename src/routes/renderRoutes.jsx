@@ -10,7 +10,6 @@ function RenderRoutes() {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    console.log('render Router', isAuthenticated);
     if (isAuthenticated) {
       getAuthenticatedUser(dispatch);
     } else {

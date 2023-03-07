@@ -38,6 +38,7 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.7.2",
+    "vite-plugin-rewrite-all": "^1.0.1",
     "yup": "^1.0.0"
   },
   "devDependencies": {

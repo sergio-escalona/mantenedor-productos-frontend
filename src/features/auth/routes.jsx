@@ -4,6 +4,8 @@ import { Navigate } from 'react-router-dom';
 
 //@pages
 const Login = lazy(() => import('./pages/Login'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'));
+const NewPass = lazy(() => import('./pages/NewPass'));
 
 const authRoutes = [
   {
@@ -12,6 +14,18 @@ const authRoutes = [
     exact: true,
     element: ({ isAuthenticated }) =>
       isAuthenticated ? <Navigate to="/home" /> : <Login />,
+  },
+  {
+    path: '/forgot-password',
+    key: 'FORGOT',
+    exact: true,
+    element: () => <ForgotPassword />,
+  },
+  {
+    path: '/recover-password/:token',
+    key: 'RECOVER',
+    exact: true,
+    element: () => <NewPass />,
   },
 ];
 

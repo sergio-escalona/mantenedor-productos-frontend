@@ -48,42 +48,42 @@ export const getAuthenticatedUser = dispatch =>
       });
   });
 
-// export const updateUserPassword = (dispatch, values) =>
-//   new Promise((resolve, reject) => {
-//     Axios.put('/auth/me', values)
-//       .then(response => {
-//         const { data } = response;
-//         dispatch({ type: 'UPDATE_LOGGED_USER_PASSWORD', payload: data });
-//         resolve(data);
-//       })
-//       .catch(() => {
-//         reject();
-//       });
-//   });
+export const updateUserPassword = (dispatch, values) =>
+  new Promise((resolve, reject) => {
+    Axios.put('/auth/change-password', values)
+      .then(response => {
+        const { data } = response;
+        dispatch({ type: 'UPDATE_LOGGED_USER_PASSWORD', payload: data });
+        resolve(data);
+      })
+      .catch(() => {
+        reject();
+      });
+  });
 
-// export const requestRecoveryPassword = (__, values) =>
-//   new Promise((resolve, reject) => {
-//     Axios.post('/auth/recovery-password', values)
-//       .then(response => {
-//         const { data } = response;
-//         resolve(data);
-//       })
-//       .catch(e => {
-//         reject(e);
-//       });
-//   });
+export const requestRecoveryPassword = (__, values) =>
+  new Promise((resolve, reject) => {
+    Axios.post('/auth/forgot-password', values)
+      .then(response => {
+        const { data } = response;
+        resolve(data);
+      })
+      .catch(e => {
+        reject(e);
+      });
+  });
 
-// export const confirmRecoveryPassword = (__, values) =>
-//   new Promise((resolve, reject) => {
-//     Axios.post('/auth/recovery-password-confirm', values)
-//       .then(response => {
-//         const { data } = response;
-//         resolve(data);
-//       })
-//       .catch(e => {
-//         reject(e);
-//       });
-//   });
+export const confirmRecoveryPassword = (__, values) =>
+  new Promise((resolve, reject) => {
+    Axios.post('/auth/recover-password', values)
+      .then(response => {
+        const { data } = response;
+        resolve(data);
+      })
+      .catch(e => {
+        reject(e);
+      });
+  });
 
 export const logout = dispatch => {
   window.localStorage.clear();
