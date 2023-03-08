@@ -11,12 +11,14 @@ import {
   MenuList,
   MenuItem,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import { FiMenu, FiChevronRight } from 'react-icons/fi';
 import { logout, useAuthDispatch, useAuthState } from '../../context';
 
 export default function MobileNav({ onOpen, children, ...rest }) {
   const { user } = useAuthState();
   const dispatch = useAuthDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout(dispatch);
@@ -86,7 +88,9 @@ export default function MobileNav({ onOpen, children, ...rest }) {
               </HStack>
             </MenuButton>
             <MenuList>
-              <MenuItem>Ver Perfil</MenuItem>
+              <MenuItem onClick={() => navigate(`/change-password`)}>
+                Cambiar contraseña
+              </MenuItem>
               <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
             </MenuList>
           </Menu>

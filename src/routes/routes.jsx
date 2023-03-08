@@ -4,6 +4,7 @@ import homeRoutes from '../features/home/routes';
 import categoriesRoutes from '../features/categories/routes';
 import productsRoutes from '../features/products/routes';
 import usersRouter from '../features/users/routes';
+import userRouter from '../features/user/routes';
 
 const generalsRoutes = [
   {
@@ -23,6 +24,7 @@ const routes = [
   ...categoriesRoutes,
   ...productsRoutes,
   ...usersRouter,
+  ...userRouter,
 ];
 
 export default routes;

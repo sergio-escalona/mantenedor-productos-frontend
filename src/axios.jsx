@@ -45,7 +45,7 @@ Axios.interceptors.response.use(
     if (error.response) {
       if (
         error.response?.status === 401 &&
-        originalRequest.url === '/auth/changetoken'
+        originalRequest.url === '/auth/change-token'
       ) {
         window.localStorage.clear();
         window.location.replace('/');
@@ -58,7 +58,7 @@ Axios.interceptors.response.use(
       ) {
         originalRequest._retry = true;
         try {
-          const res = await Axios.post('/auth/changetoken', {
+          const res = await Axios.post('/auth/change-token', {
             refreshToken: window.localStorage.getItem('refreshToken'),
           });
           if (res.status === 200) {

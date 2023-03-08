@@ -1,4 +1,9 @@
 import Axios from '../Axios';
+import { toast } from 'react-toastify';
+
+const showToastAlert = ({ type = 'success', message = '' }) => {
+  toast(message, { type });
+};
 
 export const validUser = (dispatch, credentials) =>
   new Promise((resolve, reject) => {
@@ -17,6 +22,10 @@ export const validUser = (dispatch, credentials) =>
         });
       })
       .catch(error => {
+        showToastAlert({
+          type: 'error',
+          message: err.response.data.detail || 'Error al iniciar sesión',
+        });
         dispatch({
           type: 'LOGIN_ERROR',
           payload: error.response.data.message,
@@ -56,7 +65,11 @@ export const updateUserPassword = (dispatch, values) =>
         dispatch({ type: 'UPDATE_LOGGED_USER_PASSWORD', payload: data });
         resolve(data);
       })
-      .catch(() => {
+      .catch(err => {
+        showToastAlert({
+          type: 'error',
+          message: err.response.data.detail || 'Error al cambiar contraseña',
+        });
         reject();
       });
   });
@@ -78,10 +91,15 @@ export const confirmRecoveryPassword = (__, values) =>
     Axios.post('/auth/recover-password', values)
       .then(response => {
         const { data } = response;
+        showToastAlert({ message: 'Cambio de contraseña exitoso' });
         resolve(data);
       })
-      .catch(e => {
-        reject(e);
+      .catch(err => {
+        showToastAlert({
+          type: 'error',
+          message: err.response.data.detail || 'Error al cambiar contraseña',
+        });
+        reject(err);
       });
   });
 

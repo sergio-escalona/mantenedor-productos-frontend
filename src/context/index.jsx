@@ -3,6 +3,7 @@ import {
   logout,
   requestRecoveryPassword,
   confirmRecoveryPassword,
+  updateUserPassword,
 } from './actions';
 import { AuthProvider, useAuthDispatch, useAuthState } from './context';
 
@@ -14,4 +15,5 @@ export {
   logout,
   requestRecoveryPassword,
   confirmRecoveryPassword,
+  updateUserPassword,
 };
