@@ -4,7 +4,6 @@ const sidebarCollapse = window.localStorage.getItem('sidebarCollapse') || false;
 
 export const initialState = {
   isAuthenticated: !!token,
-  // isAuthenticated: true,
   isValidUser: false,
   loading: false,
   user: undefined,

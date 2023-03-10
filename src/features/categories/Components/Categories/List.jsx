@@ -1,12 +1,7 @@
+//@libs
 import { useMemo, useState } from 'react';
 import { SelectColumn } from 'react-data-grid';
 import { Box, Center, GridItem, SimpleGrid } from '@chakra-ui/react';
-
-import {
-  FilterRenderer,
-  Table,
-  TableFilterInput,
-} from '../../../../shared/components/Table';
 
 //@hooks
 import useGetAllCategories from '../../Hooks/useGetAllCategories';
@@ -18,6 +13,11 @@ import CreateCategory from './CreateCategory';
 import EditCategory from './EditCategory';
 import { Menu } from '../../../../shared/components';
 import { deleteAlert } from '../../../../utils/alerts';
+import {
+  FilterRenderer,
+  Table,
+  TableFilterInput,
+} from '../../../../shared/components/Table';
 
 const List = () => {
   const [filtersList, setFiltersList] = useState({

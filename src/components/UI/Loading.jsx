@@ -1,3 +1,4 @@
+//@components
 import { Center, CircularProgress } from '@chakra-ui/react';
 
 function Loading() {

@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react';
-import { Heading } from '../../../components/UI';
 
 //@components
 import Categories from '../Components/Categories';
+import { Heading } from '../../../components/UI';
 
 export default function CategoriesMain() {
   return (

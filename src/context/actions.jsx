@@ -1,3 +1,4 @@
+//@components
 import Axios from '../Axios';
 import { toast } from 'react-toastify';
 
@@ -52,6 +53,7 @@ export const getAuthenticatedUser = dispatch =>
         dispatch({ type: 'END_LOADING' });
       })
       .catch(e => {
+        window.localStorage.clear();
         dispatch({ type: 'END_LOADING' });
         reject(e);
       });

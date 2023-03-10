@@ -1,4 +1,7 @@
+//@libs
 import { Navigate } from 'react-router-dom';
+
+//@routes
 import authRoutes from '../features/auth/routes';
 import homeRoutes from '../features/home/routes';
 import categoriesRoutes from '../features/categories/routes';

@@ -1,3 +1,4 @@
+//@libs
 import { useState } from 'react';
 import { Box, GridItem, SimpleGrid, Text } from '@chakra-ui/react';
 //@components
@@ -38,7 +39,8 @@ export default function Graphs() {
           </Text>
           {data && <PieGraph data={data} dataKey={'count'} />}
         </GridItem>
-        <GridItem colSpan={{ base: 12, lg: 6 }}>
+        <GridItem colSpan={{ base: 12, lg: 10 }}></GridItem>
+        <GridItem colSpan={{ base: 12, lg: 2 }}>
           <Button onClick={downloadExcel}>Descargar XLSX</Button>
         </GridItem>
       </SimpleGrid>

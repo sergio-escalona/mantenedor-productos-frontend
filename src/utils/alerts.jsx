@@ -1,4 +1,4 @@
-//libs
+//@libs
 import Swal from 'sweetalert2';
 
 const swalWithMaterialStyles = customClass =>

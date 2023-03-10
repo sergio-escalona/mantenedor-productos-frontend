@@ -1,3 +1,4 @@
+//@components
 import { Box, Center, SimpleGrid, GridItem } from '@chakra-ui/react';
 import { IMAGES } from '../../../../config/constants';
 

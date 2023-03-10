@@ -1,12 +1,7 @@
+//@libs
 import { useMemo, useState } from 'react';
 import { SelectColumn } from 'react-data-grid';
 import { Box, Center, GridItem, SimpleGrid, Text } from '@chakra-ui/react';
-
-import {
-  FilterRenderer,
-  Table,
-  TableFilterInput,
-} from '../../../../shared/components/Table';
 
 //@hooks
 import useGetAllUsers from '../../Hooks/useGetAllUsers';
@@ -18,6 +13,11 @@ import CreateProduct from './CreateUser';
 import EditProduct from './EditUser';
 import { Menu } from '../../../../shared/components';
 import { deleteAlert } from '../../../../utils/alerts';
+import {
+  FilterRenderer,
+  Table,
+  TableFilterInput,
+} from '../../../../shared/components/Table';
 
 const List = () => {
   const [filtersList, setFiltersList] = useState({

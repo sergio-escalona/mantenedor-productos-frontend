@@ -1,4 +1,11 @@
+//@libs
 import { useState } from 'react';
+import { randomBytes, secretbox } from 'tweetnacl';
+import { encodeBase64 } from 'tweetnacl-util';
+import { Buffer } from 'buffer';
+import { useFormik } from 'formik';
+
+//@components
 import {
   Box,
   Center,
@@ -10,7 +17,6 @@ import {
   IconButton,
   useTheme,
 } from '@chakra-ui/react';
-import { useFormik } from 'formik';
 import {
   AiOutlineEye as ViewIcon,
   AiOutlineEyeInvisible as HideIcon,
@@ -20,6 +26,13 @@ import { loginUser, useAuthState, useAuthDispatch } from '../../../context';
 import { validUser } from '../../../context/actions';
 import AuthWrapper from '../Components/Auth/AuthWrapper';
 import { loginSchema } from '../Components/Auth/validations';
+const { VITE_SECRET_KEY } = import.meta.env;
+
+// Buffer de 24 bytes
+const nonce = randomBytes(24);
+
+// Llave secreta
+const secretKey = Buffer.from(VITE_SECRET_KEY, 'utf8');
 
 export default function Login() {
   const theme = useTheme();
@@ -37,9 +50,14 @@ export default function Login() {
       password: '',
     },
     onSubmit: values => {
+      // Buffer con el password a encriptar
+      const secretData = Buffer.from(values.password, 'utf8');
+      const encrypted = secretbox(secretData, nonce, secretKey);
+      // Resultado a enviar
+      const result = `${encodeBase64(nonce)}:${encodeBase64(encrypted)}`;
       validUser(dispatch, {
         email: values.email,
-        password: values.password,
+        password: result,
       }).then(res => {
         loginUser(dispatch, {
           user: res?.user,

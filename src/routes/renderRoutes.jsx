@@ -1,5 +1,8 @@
+//@libs
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
+//@components
 import { Loading } from '../components/UI';
 import { useAuthState, useAuthDispatch } from '../context';
 import { getAuthenticatedUser, logout } from '../context/actions';

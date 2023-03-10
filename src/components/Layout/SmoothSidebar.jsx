@@ -1,4 +1,5 @@
-import { Logo } from '../../shared/components';
+//@components
+import { useLocation } from 'react-router-dom';
 import { Box, IconButton, useTheme } from '@chakra-ui/react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
@@ -10,9 +11,9 @@ import {
   useProSidebar,
 } from 'react-pro-sidebar';
 import Icon from '../../shared/components/Icon';
-import { useLocation } from 'react-router-dom';
 import { useAuthDispatch, useAuthState } from '../../context';
 import { changeNavbarStatus } from '../../context/actions';
+import { Logo } from '../../shared/components';
 
 export default function SmoothSIdebar({ routes }) {
   const theme = useTheme();
